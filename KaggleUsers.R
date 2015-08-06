@@ -123,7 +123,8 @@ p <- ggplot(country, aes(x=Country, y=Frequency)) +
       geom_bar(stat="identity", fill="#53cfff") +
       coord_flip() +
       ggtitle("Kaggle Users by Location (with USA)")
-
+getwd()
+ggsave(p, file="Kaggle_Users_by_Location.png", width=16, height=12)
 #############
 ## Plotting world map
 library(googleVis)
@@ -131,8 +132,11 @@ library(googleVis)
 ## With USA
  Geo <- gvisGeoMap(country, locationvar="Country", numvar="Frequency",
                    options=list(height=900, width=800, datMode="regions"))
- plot(Geo)
- 
+##plot(Geo)
+
+##save map
+cat(Geo$html$chart, file="map.html")
+
 ## Without USA
  Geo2 <- gvisGeoMap(country_noUSA, locationvar="Country", numvar="Frequency",
                    options=list(height=900, width=800,Title="Kaggle",datMode="regions"))
